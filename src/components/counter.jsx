@@ -1,21 +1,22 @@
 import React, { Component, Fragment } from "react";
+import "../styles/counter.css";
 
 class Counter extends Component {
   render() {
     return (
       <Fragment>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <div className="btn-group">
+        <div className="btn-group ">
           {" "}
           <button
             onClick={() => this.props.onIncrement(this.props.counter)}
-            className="btn btn-secondary btn-sm"
+            className="btn btn-secondary btn-sm "
           >
             +
           </button>
           <button
             onClick={() => this.props.onDecrement(this.props.counter)}
-            className="btn btn-secondary btn-sm"
+            className="btn btn-secondary btn-sm decrement"
           >
             -
           </button>
@@ -32,14 +33,14 @@ class Counter extends Component {
   }
 
   getBadgeClasses() {
-    let classes = "badge  badge-pill m-2 badge-";
+    let classes = "badge counter-badge badge-pill m-2 badge-";
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatCount() {
     const { value } = this.props.counter;
-    return value === 0 ? "Zero" : value;
+    return value === 0 ? "Out of stock" : `${value}`;
   }
 }
 

@@ -1,0 +1,7 @@
+.counters-container {
+  display: block;
+  height: auto;
+  /* max-width: 30%; */
+  /* margin-right: 50vw; */
+  text-align: right;
+}

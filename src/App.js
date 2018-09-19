@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import NavBar from "./components/navbar";
 import "./App.css";
 import Counters from "./components/counters";
+import "./styles/counter.css";
 
 class App extends Component {
   state = {
@@ -59,7 +60,7 @@ class App extends Component {
         <NavBar
           totalCounters={this.state.counters.filter(c => c.value > 0).length}
         />
-        <main className="container">
+        <main className="container counters-container">
           <Counters
             counters={this.state.counters}
             onReset={this.handleReset}
