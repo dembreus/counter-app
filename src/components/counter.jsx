@@ -1,47 +1,60 @@
 import React, { Component, Fragment } from "react";
-import "../styles/counter.css";
 
 class Counter extends Component {
   render() {
+    const { onIncrement, onDecrement, onDelete, counter } = this.props;
     return (
       <Fragment>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <div className="btn-group ">
-          {" "}
-          <button
-            onClick={() => this.props.onIncrement(this.props.counter)}
-            className="btn btn-secondary btn-sm "
-          >
-            +
-          </button>
-          <button
-            onClick={() => this.props.onDecrement(this.props.counter)}
-            className="btn btn-secondary btn-sm decrement"
-          >
-            -
-          </button>
+        <div className="row">
+          <div className="col-1">
+            <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+          </div>
+          <div className="col">
+            {" "}
+            <div className="btn-group  m-2">
+              {" "}
+              <button
+                onClick={() => onIncrement(counter)}
+                className="btn btn-secondary btn-sm "
+              >
+                +
+              </button>
+              <button
+                onClick={() => onDecrement(counter)}
+                className="btn btn-secondary btn-sm"
+                disabled={counter.value === 0 ? "disabled" : ""}
+              >
+                -
+              </button>
+            </div>
+            <button
+              onClick={() => onDelete(counter.id)}
+              className="btn btn-danger btn-sm"
+            >
+              x
+            </button>
+          </div>
         </div>
-
-        <button
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-          className="btn btn-danger btn-sm m-2"
-        >
-          Delete
-        </button>
       </Fragment>
     );
   }
 
-  getBadgeClasses() {
+  disableButton = () => {
+    let classes = "btn btn-secondary btn-sm decrement ";
+    classes += this.props.counter.value === 0 ? "disabled" : "";
+    return classes;
+  };
+
+  getBadgeClasses = () => {
     let classes = "badge counter-badge badge-pill m-2 badge-";
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
-  }
+  };
 
-  formatCount() {
+  formatCount = () => {
     const { value } = this.props.counter;
     return value === 0 ? "Out of stock" : `${value}`;
-  }
+  };
 }
 
 export default Counter;
